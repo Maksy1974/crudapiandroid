@@ -1,0 +1,27 @@
+# Android Studio
+.idea/
+*.iml
+
+# Gradle
+.gradle/
+
+# Local config (SDK path)
+local.properties
+
+# Build output
+build/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Native build
+.externalNativeBuild/
+.cxx/
+
+# Logs
+*.log
+
+# Keystore (important)
+*.jks
+*.keystore
