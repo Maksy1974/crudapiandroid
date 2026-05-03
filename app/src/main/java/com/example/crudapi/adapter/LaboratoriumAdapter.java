@@ -3,32 +3,30 @@ package com.example.crudapi.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.example.crudapi.R;
-import com.example.crudapi.model.Mahasiswa;
+import com.example.crudapi.model.Laboratorium;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MahasiswaAdapter extends RecyclerView.Adapter<MahasiswaAdapter.ViewHolder> {
+public class LaboratoriumAdapter extends RecyclerView.Adapter<LaboratoriumAdapter.ViewHolder> {
 
     public interface OnItemActionListener {
-        void onEdit(Mahasiswa m);
+        void onEdit(Laboratorium lab);
 
-        void onDelete(Mahasiswa m);
+        void onDelete(Laboratorium lab);
     }
 
-    private final List<Mahasiswa> list;
+    private final List<Laboratorium> list;
     private final OnItemActionListener listener;
 
-    public MahasiswaAdapter(List<Mahasiswa> list, OnItemActionListener listener) {
+    public LaboratoriumAdapter(List<Laboratorium> list, OnItemActionListener listener) {
         this.list = list != null ? list : new ArrayList<>();
         this.listener = listener;
     }
@@ -36,27 +34,16 @@ public class MahasiswaAdapter extends RecyclerView.Adapter<MahasiswaAdapter.View
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_mahasiswa, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_laboratorium, parent, false);
         return new ViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Mahasiswa m = list.get(position);
-        holder.txtNama.setText(m.getNama());
-        holder.txtNim.setText(m.getNim());
-        String prodiNama = m.getProdi() != null ? m.getProdi().getNama() : ("Prodi ID: " + m.getProdiId());
-        holder.txtProdi.setText(prodiNama);
-
-        if (m.getFoto() != null && !m.getFoto().isEmpty()) {
-            Glide.with(holder.imgFoto.getContext())
-                    .load(m.getFoto())
-                    .centerCrop()
-                    .placeholder(R.mipmap.ic_launcher)
-                    .into(holder.imgFoto);
-        } else {
-            holder.imgFoto.setImageResource(R.mipmap.ic_launcher);
-        }
+        Laboratorium lab = list.get(position);
+        holder.txtNama.setText(lab.getNama());
+        String lokasi = lab.getLokasi() != null ? lab.getLokasi() : "";
+        holder.txtLokasi.setText(lokasi);
 
         holder.itemView.setOnClickListener(v -> {
             PopupMenu popup = new PopupMenu(v.getContext(), v);
@@ -64,9 +51,9 @@ public class MahasiswaAdapter extends RecyclerView.Adapter<MahasiswaAdapter.View
             popup.getMenu().add("Hapus");
             popup.setOnMenuItemClickListener(item -> {
                 if ("Edit".contentEquals(item.getTitle())) {
-                    listener.onEdit(m);
+                    listener.onEdit(lab);
                 } else if ("Hapus".contentEquals(item.getTitle())) {
-                    listener.onDelete(m);
+                    listener.onDelete(lab);
                 }
                 return true;
             });
@@ -80,17 +67,13 @@ public class MahasiswaAdapter extends RecyclerView.Adapter<MahasiswaAdapter.View
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
-        final ImageView imgFoto;
         final TextView txtNama;
-        final TextView txtNim;
-        final TextView txtProdi;
+        final TextView txtLokasi;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
-            imgFoto = itemView.findViewById(R.id.imgFoto);
             txtNama = itemView.findViewById(R.id.txtNama);
-            txtNim = itemView.findViewById(R.id.txtNim);
-            txtProdi = itemView.findViewById(R.id.txtProdi);
+            txtLokasi = itemView.findViewById(R.id.txtLokasi);
         }
     }
 }

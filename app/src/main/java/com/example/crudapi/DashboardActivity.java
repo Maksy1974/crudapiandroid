@@ -5,10 +5,12 @@ import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.GridLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
+import androidx.annotation.DrawableRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
@@ -20,15 +22,15 @@ public class DashboardActivity extends AppCompatActivity {
     private static final class Tile {
         final String title;
         final String subtitle;
-        final String badge;
+        @DrawableRes
+        final int iconRes;
         final int accentColor;
-        @NonNull
         final Class<?> target;
 
-        Tile(String title, String subtitle, String badge, int accentColor, @NonNull Class<?> target) {
+        Tile(String title, String subtitle, int iconRes, int accentColor, Class<?> target) {
             this.title = title;
             this.subtitle = subtitle;
-            this.badge = badge;
+            this.iconRes = iconRes;
             this.accentColor = accentColor;
             this.target = target;
         }
@@ -48,43 +50,61 @@ public class DashboardActivity extends AppCompatActivity {
                 new Tile(
                         getString(R.string.menu_prodi_title),
                         getString(R.string.menu_prodi_subtitle),
-                        "P",
+                        R.drawable.ic_entity_prodi,
                         R.color.poliman_blue,
                         MainActivity.class
                 ),
                 new Tile(
                         getString(R.string.menu_mahasiswa_title),
                         getString(R.string.menu_mahasiswa_subtitle),
-                        "M",
+                        R.drawable.ic_entity_mahasiswa,
                         R.color.poliman_teal,
                         MahasiswaActivity.class
                 ),
                 new Tile(
                         getString(R.string.menu_matakuliah_title),
                         getString(R.string.menu_matakuliah_subtitle),
-                        "MK",
+                        R.drawable.ic_entity_matakuliah,
                         R.color.badge_orange,
                         MatakuliahActivity.class
                 ),
                 new Tile(
                         getString(R.string.menu_krs_title),
                         getString(R.string.menu_krs_subtitle),
-                        "K",
+                        R.drawable.ic_entity_krs,
                         R.color.badge_purple,
                         KrsActivity.class
+                ),
+                new Tile(
+                        getString(R.string.menu_dosen_title),
+                        getString(R.string.menu_dosen_subtitle),
+                        R.drawable.ic_entity_dosen,
+                        R.color.poliman_blue_dark,
+                        DosenActivity.class
+                ),
+                new Tile(
+                        getString(R.string.menu_lab_title),
+                        getString(R.string.menu_lab_subtitle),
+                        R.drawable.ic_entity_lab,
+                        R.color.poliman_teal,
+                        LaboratoriumActivity.class
                 )
         };
 
         int margin = (int) (8 * getResources().getDisplayMetrics().density);
         for (Tile tile : tiles) {
             View row = LayoutInflater.from(this).inflate(R.layout.item_dashboard_card, grid, false);
-            TextView badge = row.findViewById(R.id.txtBadge);
+            FrameLayout iconBg = row.findViewById(R.id.frameIconBg);
+            ImageView imgIcon = row.findViewById(R.id.imgMenuIcon);
             TextView title = row.findViewById(R.id.txtTitle);
             TextView subtitle = row.findViewById(R.id.txtSubtitle);
             MaterialCardView card = (MaterialCardView) row;
 
-            badge.setText(tile.badge);
-            badge.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, tile.accentColor)));
+            imgIcon.setImageResource(tile.iconRes);
+            imgIcon.clearColorTint();
+            iconBg.setBackgroundResource(R.drawable.bg_dashboard_badge);
+            iconBg.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, tile.accentColor)));
+
             title.setText(tile.title);
             subtitle.setText(tile.subtitle);
 

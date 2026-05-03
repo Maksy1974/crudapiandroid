@@ -1,15 +1,15 @@
 package com.example.crudapi.model;
 
-public class MahasiswaPayload {
+public class DosenPayload {
     private final String nama;
-    private final String nim;
+    private final String nip;
     private final String jurusan;
     private final int prodiId;
     private String foto;
 
-    public MahasiswaPayload(String nama, String nim, String jurusan, int prodiId) {
+    public DosenPayload(String nama, String nip, String jurusan, int prodiId) {
         this.nama = nama;
-        this.nim = nim;
+        this.nip = nip;
         this.jurusan = jurusan;
         this.prodiId = prodiId;
     }
@@ -18,9 +18,6 @@ public class MahasiswaPayload {
         this.foto = foto;
     }
 
-    /**
-     * Field name dikirim ke API sesuai field {@code foto} pada model mahasiswa.
-     */
     @SuppressWarnings("unused")
     public String getFoto() {
         return foto;

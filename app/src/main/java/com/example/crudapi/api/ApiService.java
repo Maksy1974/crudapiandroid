@@ -1,7 +1,11 @@
 package com.example.crudapi.api;
 
+import com.example.crudapi.model.Dosen;
+import com.example.crudapi.model.DosenPayload;
 import com.example.crudapi.model.Krs;
 import com.example.crudapi.model.KrsPayload;
+import com.example.crudapi.model.Laboratorium;
+import com.example.crudapi.model.LaboratoriumPayload;
 import com.example.crudapi.model.Mahasiswa;
 import com.example.crudapi.model.MahasiswaPayload;
 import com.example.crudapi.model.Matakuliah;
@@ -47,6 +51,22 @@ public interface ApiService {
     @DELETE("mahasiswa/{id}")
     Call<Void> deleteMahasiswa(@Path("id") int id);
 
+    /** Pastikan backend menyediakan rute REST ini; beberapa server memakai penamaan berbeda. */
+    @GET("dosen")
+    Call<List<Dosen>> getDosenList();
+
+    @GET("dosen/{id}")
+    Call<Dosen> getDosenById(@Path("id") int id);
+
+    @POST("dosen")
+    Call<Dosen> createDosen(@Body DosenPayload body);
+
+    @PUT("dosen/{id}")
+    Call<Dosen> updateDosen(@Path("id") int id, @Body DosenPayload body);
+
+    @DELETE("dosen/{id}")
+    Call<Void> deleteDosen(@Path("id") int id);
+
     @GET("matakuliah")
     Call<List<Matakuliah>> getMatakuliah();
 
@@ -67,4 +87,19 @@ public interface ApiService {
 
     @DELETE("krs/{id}")
     Call<Void> deleteKrs(@Path("id") int id);
+
+    @GET("laboratorium")
+    Call<List<Laboratorium>> getLaboratoriumList();
+
+    @GET("laboratorium/{id}")
+    Call<Laboratorium> getLaboratoriumById(@Path("id") int id);
+
+    @POST("laboratorium")
+    Call<Laboratorium> createLaboratorium(@Body LaboratoriumPayload body);
+
+    @PUT("laboratorium/{id}")
+    Call<Laboratorium> updateLaboratorium(@Path("id") int id, @Body LaboratoriumPayload body);
+
+    @DELETE("laboratorium/{id}")
+    Call<Void> deleteLaboratorium(@Path("id") int id);
 }

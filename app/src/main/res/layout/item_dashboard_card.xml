@@ -17,16 +17,21 @@
         android:orientation="horizontal"
         android:padding="16dp">
 
-        <TextView
-            android:id="@+id/txtBadge"
+        <FrameLayout
+            android:id="@+id/frameIconBg"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:background="@drawable/bg_dashboard_badge"
-            android:gravity="center"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            tools:text="P" />
+            android:background="@drawable/bg_dashboard_badge">
+
+            <ImageView
+                android:id="@+id/imgMenuIcon"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_gravity="center"
+                android:contentDescription="@null"
+                android:importantForAccessibility="no"
+                tools:src="@drawable/ic_entity_prodi" />
+        </FrameLayout>
 
         <LinearLayout
             android:layout_width="0dp"
@@ -39,7 +44,7 @@
                 android:id="@+id/txtTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/poliman_blue_dark"
+                android:textColor="@color/text_primary"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 tools:text="Program Studi" />
@@ -49,6 +54,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
+                android:textColor="@color/text_secondary"
                 android:textSize="13sp"
                 tools:text="Kelola data prodi" />
         </LinearLayout>

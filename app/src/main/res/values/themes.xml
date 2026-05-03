@@ -1,17 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <style name="Base.Theme.CRUDAPI" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/poliman_blue</item>
         <item name="colorPrimaryVariant">@color/poliman_blue_dark</item>
         <item name="colorSecondary">@color/poliman_teal</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorSurface">@color/surface</item>
+        <item name="colorOnSurface">@color/text_secondary</item>
+        <item name="colorOnSurfaceVariant">@color/text_secondary</item>
         <item name="android:statusBarColor">@color/poliman_blue_dark</item>
+        <item name="android:textColorHint">@color/hint_on_light</item>
+        <item name="textInputOutlinedStyle">@style/Widget.CRUDAPI.TextInputLayout</item>
+        <item name="materialButtonStyle">@style/Widget.CRUDAPI.Button.Filled</item>
     </style>
 
     <style name="Theme.CRUDAPI" parent="Base.Theme.CRUDAPI" />
 
     <style name="Theme.CRUDAPI.Splash" parent="Theme.Material3.Light.NoActionBar">
-        <item name="android:windowFullscreen">false</item>
-        <item name="android:windowBackground">@color/poliman_blue_dark</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:navigationBarColor">@color/poliman_blue_dark</item>
+        <item name="android:windowBackground">@color/splash_background</item>
+        <item name="android:statusBarColor">@color/splash_background</item>
+        <item name="android:navigationBarColor">@color/splash_background</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+
+    <style name="Widget.CRUDAPI.Button.Filled" parent="Widget.Material3.Button">
+        <item name="backgroundTint">@color/poliman_blue</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="iconTint">@color/white</item>
+        <item name="rippleColor">#80FFFFFF</item>
+    </style>
+
+    <style name="Widget.CRUDAPI.Button.Outlined" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="backgroundTint">@android:color/transparent</item>
+        <item name="android:textColor">@color/poliman_blue_dark</item>
+        <item name="iconTint">@color/poliman_blue_dark</item>
+        <item name="strokeColor">@color/poliman_blue</item>
+        <item name="rippleColor">#260D47A1</item>
+    </style>
+
+    <style name="Widget.CRUDAPI.TextInputLayout" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="hintTextColor">@color/hint_outline</item>
+        <item name="boxStrokeColor">@color/outline_box</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="boxStrokeWidthFocused">2dp</item>
     </style>
 </resources>

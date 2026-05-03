@@ -12,23 +12,23 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.crudapi.R;
-import com.example.crudapi.model.Mahasiswa;
+import com.example.crudapi.model.Dosen;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MahasiswaAdapter extends RecyclerView.Adapter<MahasiswaAdapter.ViewHolder> {
+public class DosenAdapter extends RecyclerView.Adapter<DosenAdapter.ViewHolder> {
 
     public interface OnItemActionListener {
-        void onEdit(Mahasiswa m);
+        void onEdit(Dosen d);
 
-        void onDelete(Mahasiswa m);
+        void onDelete(Dosen d);
     }
 
-    private final List<Mahasiswa> list;
+    private final List<Dosen> list;
     private final OnItemActionListener listener;
 
-    public MahasiswaAdapter(List<Mahasiswa> list, OnItemActionListener listener) {
+    public DosenAdapter(List<Dosen> list, OnItemActionListener listener) {
         this.list = list != null ? list : new ArrayList<>();
         this.listener = listener;
     }
@@ -36,21 +36,21 @@ public class MahasiswaAdapter extends RecyclerView.Adapter<MahasiswaAdapter.View
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_mahasiswa, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_dosen, parent, false);
         return new ViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Mahasiswa m = list.get(position);
-        holder.txtNama.setText(m.getNama());
-        holder.txtNim.setText(m.getNim());
-        String prodiNama = m.getProdi() != null ? m.getProdi().getNama() : ("Prodi ID: " + m.getProdiId());
+        Dosen d = list.get(position);
+        holder.txtNama.setText(d.getNama());
+        holder.txtNip.setText(d.getNip());
+        String prodiNama = d.getProdi() != null ? d.getProdi().getNama() : ("Prodi ID: " + d.getProdiId());
         holder.txtProdi.setText(prodiNama);
 
-        if (m.getFoto() != null && !m.getFoto().isEmpty()) {
+        if (d.getFoto() != null && !d.getFoto().isEmpty()) {
             Glide.with(holder.imgFoto.getContext())
-                    .load(m.getFoto())
+                    .load(d.getFoto())
                     .centerCrop()
                     .placeholder(R.mipmap.ic_launcher)
                     .into(holder.imgFoto);
@@ -64,9 +64,9 @@ public class MahasiswaAdapter extends RecyclerView.Adapter<MahasiswaAdapter.View
             popup.getMenu().add("Hapus");
             popup.setOnMenuItemClickListener(item -> {
                 if ("Edit".contentEquals(item.getTitle())) {
-                    listener.onEdit(m);
+                    listener.onEdit(d);
                 } else if ("Hapus".contentEquals(item.getTitle())) {
-                    listener.onDelete(m);
+                    listener.onDelete(d);
                 }
                 return true;
             });
@@ -82,14 +82,14 @@ public class MahasiswaAdapter extends RecyclerView.Adapter<MahasiswaAdapter.View
     static class ViewHolder extends RecyclerView.ViewHolder {
         final ImageView imgFoto;
         final TextView txtNama;
-        final TextView txtNim;
+        final TextView txtNip;
         final TextView txtProdi;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
             imgFoto = itemView.findViewById(R.id.imgFoto);
             txtNama = itemView.findViewById(R.id.txtNama);
-            txtNim = itemView.findViewById(R.id.txtNim);
+            txtNip = itemView.findViewById(R.id.txtNip);
             txtProdi = itemView.findViewById(R.id.txtProdi);
         }
     }

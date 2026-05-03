@@ -27,7 +27,7 @@
             android:padding="16dp">
 
             <LinearLayout
-                android:id="@+id/rowFotoMahasiswa"
+                android:id="@+id/rowFotoDosen"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -72,8 +72,8 @@
                     android:id="@+id/edtNama"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/text_secondary"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:textColor="@color/text_secondary" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -81,14 +81,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:hint="@string/hint_nim">
+                android:hint="@string/hint_nip">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edtNim"
+                    android:id="@+id/edtNip"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/text_secondary"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:textColor="@color/text_secondary" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -102,8 +102,8 @@
                     android:id="@+id/edtJurusan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/text_secondary"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:textColor="@color/text_secondary" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView

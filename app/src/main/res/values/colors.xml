@@ -6,10 +6,15 @@
     <color name="poliman_blue_dark">#FF002171</color>
     <color name="poliman_teal">#FF00838F</color>
     <color name="surface">#FFF5F7FA</color>
+    <color name="splash_background">#FFFFFFFF</color>
+    <color name="text_primary">#FF1A237E</color>
+    <color name="text_secondary">#FF424242</color>
+    <color name="hint_on_light">#B3424242</color>
     <color name="card_prodi">#FFE3F2FD</color>
     <color name="card_mahasiswa">#FFE8F5E9</color>
     <color name="card_mk">#FFFFF3E0</color>
     <color name="card_krs">#FFF3E5F5</color>
     <color name="badge_orange">#FFE65100</color>
     <color name="badge_purple">#FF6A1B9A</color>
+    <color name="outline_muted">#FFB0BEC5</color>
 </resources>
