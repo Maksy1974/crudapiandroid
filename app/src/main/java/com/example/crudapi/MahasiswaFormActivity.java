@@ -79,7 +79,7 @@ public class MahasiswaFormActivity extends AppCompatActivity {
                     return;
                 }
                 Toast.makeText(this, R.string.mengunggah_foto, Toast.LENGTH_SHORT).show();
-                CloudinaryUploader.uploadImage(getApplicationContext(), capturedFile, new CloudinaryUploader.UploadListener() {
+                CloudinaryUploader.uploadMahasiswaPhoto(getApplicationContext(), capturedFile, new CloudinaryUploader.UploadListener() {
                     @Override
                     public void onUploaded(String secureUrl) {
                         MahasiswaFormActivity.this.runOnUiThread(() -> {

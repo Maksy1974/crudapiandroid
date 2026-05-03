@@ -69,9 +69,19 @@
     <string name="cd_foto_preview">Pratinjau foto</string>
     <string name="ambil_foto_kamera">Ambil foto (kamera)</string>
     <string name="hint_foto_wajib_baru">Data baru: foto wajib diambil lewat kamera lalu diunggah.</string>
-    <string name="cloudinary_cloud_name">YOUR_CLOUD_NAME</string>
-    <string name="cloudinary_upload_preset">YOUR_UPLOAD_PRESET</string>
-    <string name="err_cloudinary_config">Konfigurasikan nama cloud dan preset unggahan Cloudinary di strings.xml.</string>
+    <!-- cloud_name bisa di sini; upload preset UNSIGNED (opsional) jika Anda tidak memakai API Key/Secret di local.properties -->
+    <string name="cloudinary_cloud_name" translatable="false">droisbpkl</string>
+    <!-- Ganti nama preset jika memakai unggahan UNSIGNED di Cloudinary; biarkan seperti ini untuk upload bertanda tangan lewat BuildConfig -->
+    <string name="cloudinary_upload_preset" translatable="false">YOUR_UPLOAD_PRESET</string>
+    <!-- Folder untuk upload bertanda Cloudinary -->
+    <string name="cloudinary_upload_folder_mahasiswa" translatable="false">mahasiswa</string>
+    <string name="cloudinary_upload_folder_dosen" translatable="false">dosen</string>
+
+    <string name="err_cloudinary_config">
+        Unggahan foto tidak dikonfigurasi. Pilih salah satu: (1) isi nama cloud + preset UNSIGNED di strings.xml,
+        atau (2) tambahkan CLOUDINARY_API_KEY dan CLOUDINARY_API_SECRET di file local.properties di akar proyek
+        (sama seperti backend Anda), lalu build ulang.
+    </string>
     <string name="err_upload_camera">Unggah foto gagal. Periksa jaringan dan preset Cloudinary.</string>
     <string name="err_need_photo_baru">Ambil foto dulu untuk data baru.</string>
     <string name="mengunggah_foto">Mengunggah foto…</string>

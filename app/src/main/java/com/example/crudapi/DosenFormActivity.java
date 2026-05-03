@@ -74,7 +74,7 @@ public class DosenFormActivity extends AppCompatActivity {
                     return;
                 }
                 Toast.makeText(this, R.string.mengunggah_foto, Toast.LENGTH_SHORT).show();
-                CloudinaryUploader.uploadImage(getApplicationContext(), capturedFile, new CloudinaryUploader.UploadListener() {
+                CloudinaryUploader.uploadDosenPhoto(getApplicationContext(), capturedFile, new CloudinaryUploader.UploadListener() {
                     @Override
                     public void onUploaded(String secureUrl) {
                         DosenFormActivity.this.runOnUiThread(() -> {

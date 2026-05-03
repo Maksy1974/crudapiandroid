@@ -101,7 +101,6 @@ public class DashboardActivity extends AppCompatActivity {
             MaterialCardView card = (MaterialCardView) row;
 
             imgIcon.setImageResource(tile.iconRes);
-            imgIcon.clearColorTint();
             iconBg.setBackgroundResource(R.drawable.bg_dashboard_badge);
             iconBg.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, tile.accentColor)));
 

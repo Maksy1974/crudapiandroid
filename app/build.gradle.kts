@@ -2,8 +2,19 @@ plugins {
     alias(libs.plugins.android.application)
 }
 
+val localProps = java.util.Properties().apply {
+    val f = rootProject.file("local.properties")
+    if (f.exists()) {
+        f.inputStream().use { load(it) }
+    }
+}
+
 android {
     namespace = "com.example.crudapi"
+
+    buildFeatures {
+        buildConfig = true
+    }
     compileSdk {
         version = release(36)
     }
@@ -16,6 +27,12 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        // Kredensial upload bertanda Cloudinary dari local.properties (jangan dibagikan lewat APK ke publik)
+        fun q(s: String?) = "\"" + (s ?: "").replace("\\", "\\\\").replace("\"", "\\\"") + "\""
+
+        buildConfigField("String", "CLOUDINARY_API_KEY", q(localProps.getProperty("CLOUDINARY_API_KEY")))
+        buildConfigField("String", "CLOUDINARY_API_SECRET", q(localProps.getProperty("CLOUDINARY_API_SECRET")))
     }
 
     buildTypes {
