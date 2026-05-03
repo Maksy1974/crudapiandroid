@@ -15,17 +15,41 @@
         android:theme="@style/Theme.CRUDAPI"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".KrsFormActivity"
+            android:exported="false" />
+        <activity
+            android:name=".KrsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MatakuliahFormActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MatakuliahActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MahasiswaFormActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MahasiswaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DashboardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true"
+            android:theme="@style/Theme.CRUDAPI.Splash">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".TambahProdiActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="false" />
     </application>
 
 </manifest>

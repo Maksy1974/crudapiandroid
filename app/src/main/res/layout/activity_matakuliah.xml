@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/surface"
-    tools:context=".MainActivity">
+    tools:context=".MatakuliahActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:navigationIconTint="@color/white"
-            app:title="@string/title_prodi"
+            app:title="@string/title_matakuliah"
             app:titleTextColor="@color/white" />
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -28,7 +28,7 @@
         android:clipToPadding="false"
         android:paddingBottom="88dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:listitem="@layout/item_prodi" />
+        tools:listitem="@layout/item_matakuliah" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabAdd"
@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
-        android:contentDescription="@string/cd_add_prodi"
+        android:contentDescription="@string/cd_add_matakuliah"
         app:srcCompat="@drawable/ic_add"
         app:tint="@color/white" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

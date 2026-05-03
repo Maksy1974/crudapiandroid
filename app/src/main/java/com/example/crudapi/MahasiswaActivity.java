@@ -9,10 +9,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.crudapi.adapter.ProdiAdapter;
+import com.example.crudapi.adapter.MahasiswaAdapter;
 import com.example.crudapi.api.ApiClient;
 import com.example.crudapi.api.ApiService;
-import com.example.crudapi.model.Prodi;
+import com.example.crudapi.model.Mahasiswa;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -23,25 +23,24 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity {
+public class MahasiswaActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_mahasiswa);
 
         MaterialToolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
         toolbar.setNavigationOnClickListener(v -> getOnBackPressedDispatcher().onBackPressed());
 
         FloatingActionButton fab = findViewById(R.id.fabAdd);
-        fab.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, TambahProdiActivity.class)));
+        fab.setOnClickListener(v -> startActivity(new Intent(this, MahasiswaFormActivity.class)));
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
         loadData();
     }
 
@@ -53,30 +52,28 @@ public class MainActivity extends AppCompatActivity {
 
     private void loadData() {
         ApiService api = ApiClient.getRetrofit().create(ApiService.class);
-
-        api.getProdi().enqueue(new Callback<List<Prodi>>() {
+        api.getMahasiswaList().enqueue(new Callback<List<Mahasiswa>>() {
             @Override
-            public void onResponse(Call<List<Prodi>> call, Response<List<Prodi>> response) {
-                if (!response.isSuccessful() || response.body() == null) {
-                    Toast.makeText(MainActivity.this, R.string.gagal_muat, Toast.LENGTH_SHORT).show();
+            public void onResponse(Call<List<Mahasiswa>> call, Response<List<Mahasiswa>> response) {
+                if (!response.isSuccessful()) {
+                    Toast.makeText(MahasiswaActivity.this, R.string.gagal_muat, Toast.LENGTH_SHORT).show();
                     return;
                 }
-                List<Prodi> list = response.body() != null ? response.body() : new ArrayList<>();
-                ProdiAdapter adapter = new ProdiAdapter(list, new ProdiAdapter.OnItemActionListener() {
+                List<Mahasiswa> list = response.body() != null ? response.body() : new ArrayList<>();
+                MahasiswaAdapter adapter = new MahasiswaAdapter(list, new MahasiswaAdapter.OnItemActionListener() {
                     @Override
-                    public void onEdit(Prodi prodi) {
-                        Intent i = new Intent(MainActivity.this, TambahProdiActivity.class);
-                        i.putExtra(TambahProdiActivity.EXTRA_ID, prodi.getId());
-                        i.putExtra(TambahProdiActivity.EXTRA_NAMA, prodi.getNama());
+                    public void onEdit(Mahasiswa m) {
+                        Intent i = new Intent(MahasiswaActivity.this, MahasiswaFormActivity.class);
+                        i.putExtra(MahasiswaFormActivity.EXTRA_ID, m.getId());
                         startActivity(i);
                     }
 
                     @Override
-                    public void onDelete(Prodi prodi) {
-                        new AlertDialog.Builder(MainActivity.this)
+                    public void onDelete(Mahasiswa m) {
+                        new AlertDialog.Builder(MahasiswaActivity.this)
                                 .setTitle(R.string.konfirmasi_hapus)
-                                .setMessage(prodi.getNama())
-                                .setPositiveButton(R.string.ya, (dialog, which) -> deleteData(prodi.getId()))
+                                .setMessage(m.getNama())
+                                .setPositiveButton(R.string.ya, (d, w) -> deleteMahasiswa(m.getId()))
                                 .setNegativeButton(R.string.batal, null)
                                 .show();
                     }
@@ -85,25 +82,24 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<Prodi>> call, Throwable t) {
-                Toast.makeText(MainActivity.this, R.string.gagal_muat, Toast.LENGTH_SHORT).show();
+            public void onFailure(Call<List<Mahasiswa>> call, Throwable t) {
+                Toast.makeText(MahasiswaActivity.this, R.string.gagal_muat, Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    private void deleteData(int id) {
+    private void deleteMahasiswa(int id) {
         ApiService api = ApiClient.getRetrofit().create(ApiService.class);
-
-        api.deleteProdi(id).enqueue(new Callback<Void>() {
+        api.deleteMahasiswa(id).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                Toast.makeText(MainActivity.this, R.string.data_dihapus, Toast.LENGTH_SHORT).show();
+                Toast.makeText(MahasiswaActivity.this, R.string.data_dihapus, Toast.LENGTH_SHORT).show();
                 loadData();
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(MainActivity.this, R.string.gagal_simpan, Toast.LENGTH_SHORT).show();
+                Toast.makeText(MahasiswaActivity.this, R.string.gagal_simpan, Toast.LENGTH_SHORT).show();
             }
         });
     }

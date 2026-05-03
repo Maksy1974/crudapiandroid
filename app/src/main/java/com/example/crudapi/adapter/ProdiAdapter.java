@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.crudapi.R;
 import com.example.crudapi.model.Prodi;
 
+import java.util.ArrayList;
 import java.util.List;
 
 //public class ProdiAdapter extends RecyclerView.Adapter<ProdiAdapter.ViewHolder> {
@@ -59,7 +60,7 @@ public class ProdiAdapter extends RecyclerView.Adapter<ProdiAdapter.ViewHolder> 
     }
 
     public ProdiAdapter(List<Prodi> list, OnItemActionListener listener) {
-        this.list = list;
+        this.list = list != null ? list : new ArrayList<>();
         this.listener = listener;
     }
 
